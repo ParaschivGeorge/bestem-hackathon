@@ -1,13 +1,12 @@
 package com.paraciuman.hackathon.controls;
 
 import com.paraciuman.hackathon.model.Loc;
+import com.paraciuman.hackathon.responseTypes.WeatherApiResponse;
 import org.apache.tomcat.util.bcel.Const;
 import org.hibernate.boot.jaxb.SourceType;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDate;
@@ -38,10 +37,9 @@ public class WeatherApiController {
     }
 
     @GetMapping(path = "/weather")
-    public List<WeatherApiResponse> getWeather() throws Exception {
-        Date startDate = new Date(2018, 4, 14);
-        Date endDate = new Date(2018, 4, 16);
-        String location = "Berlin";
+    public List<WeatherApiResponse> getWeather
+        (@RequestBody final String location, @RequestBody final Date startDate, @RequestBody final Date endDate)
+        throws Exception {
         List<WeatherApiResponse> response = new ArrayList<>();
         List<Date> dates = new ArrayList<>(25);
         dates.add(startDate);
@@ -81,39 +79,5 @@ public class WeatherApiController {
         return response;
     }
 
-    private class WeatherApiResponse {
-        private String description;
-        private Double temperature;
-        private String icon;
 
-        public WeatherApiResponse(String description, Double temperature, String icon) {
-            this.description = description;
-            this.temperature = temperature;
-            this.icon = icon;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public Double getTemperature() {
-            return temperature;
-        }
-
-        public void setTemperature(Double temperature) {
-            this.temperature = temperature;
-        }
-
-        public String getIcon() {
-            return icon;
-        }
-
-        public void setIcon(String icon) {
-            this.icon = icon;
-        }
-    }
 }
