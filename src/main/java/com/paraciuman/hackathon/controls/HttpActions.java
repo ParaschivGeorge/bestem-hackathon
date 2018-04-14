@@ -34,7 +34,6 @@ public class HttpActions {
         JSONObject latLong = obj.getJSONObject("location");
         Loc loc = new Loc(latLong.getDouble("lat"), latLong.getDouble("lng"));
         return loc;
-
     }
 
 }
