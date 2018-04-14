@@ -15,11 +15,11 @@ import java.net.URL;
 @RestController
 public class WeatherApiController {
 
-    @GetMapping(path = "/weather/{location}")
-    String getWeather(@PathVariable String location){
+    @GetMapping(path = "/weather/", params = {"location", "id"})
+    String getWeather(@PathVariable String location, @PathVariable Integer id){
         String response = "asas";
 
-        return location;
+        return location + id;
     }
 
     public static void main(String[] args) {
