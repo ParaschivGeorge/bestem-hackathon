@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
-@RestController
 public class WeatherApiController {
 
     private static final String KEY = "f8b16921c9ffdcb6e3b292741a9e44ae";
