@@ -37,6 +37,11 @@ public class WeatherApiController {
         }
     }
 
+    @GetMapping(path = "/weather1")
+    public WeatherAPIRequestBody getWeatherAPIRequestBody() {
+        return new WeatherAPIRequestBody("Berlin", new Date(), new Date());
+    }
+
     @PostMapping(path = "/weather")
     public List<WeatherApiResponse> getWeather
         (@RequestBody final WeatherAPIRequestBody weatherAPIRequestBody)
