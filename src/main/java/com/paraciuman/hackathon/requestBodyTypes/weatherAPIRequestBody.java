@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class WeatherAPIRequestBody {
     String location;
-    Date startDate;
-    Date endDate;
+    String startDate;
+    String endDate;
 
     public WeatherAPIRequestBody() {
     }
 
-    public WeatherAPIRequestBody(String location, Date startDate, Date endDate) {
+    public WeatherAPIRequestBody(String location, String startDate, String endDate) {
         this.location = location;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -24,19 +24,19 @@ public class WeatherAPIRequestBody {
         this.location = location;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 }

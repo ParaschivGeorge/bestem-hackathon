@@ -37,27 +37,20 @@ public class WeatherApiController {
         }
     }
 
-    @GetMapping(path = "/weather1")
-    public WeatherAPIRequestBody getWeatherAPIRequestBody() {
-        return new WeatherAPIRequestBody("Berlin", new Date(), new Date());
-    }
-
     @PostMapping(path = "/weather")
     public List<WeatherApiResponse> getWeather
         (@RequestBody final WeatherAPIRequestBody weatherAPIRequestBody)
         throws Exception {
         List<WeatherApiResponse> response = new ArrayList<>();
-        List<Date> dates = new ArrayList<>(25);
-        dates.add(weatherAPIRequestBody.getStartDate());
 
         Loc loc = HttpActions.getLatLong(weatherAPIRequestBody.getLocation());
 
         Integer i = 0;
         while (true) {
             String mounth, day;
-            Date newDate = DateUtil.addDays(weatherAPIRequestBody.getStartDate(), i);
+            Date newDate = DateUtil.addDays(new Date(weatherAPIRequestBody.getStartDate()), i);
             i++;
-            if (newDate.after(weatherAPIRequestBody.getEndDate()))
+            if (newDate.after(new Date(weatherAPIRequestBody.getEndDate())))
                 break;
 
             if (newDate.getDay() < 10)
