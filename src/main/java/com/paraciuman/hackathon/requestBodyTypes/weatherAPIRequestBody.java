@@ -2,15 +2,15 @@ package com.paraciuman.hackathon.requestBodyTypes;
 
 import java.util.Date;
 
-public class weatherAPIRequestBody {
+public class WeatherAPIRequestBody {
     String location;
     Date startDate;
     Date endDate;
 
-    public weatherAPIRequestBody() {
+    public WeatherAPIRequestBody() {
     }
 
-    public weatherAPIRequestBody(String location, Date startDate, Date endDate) {
+    public WeatherAPIRequestBody(String location, Date startDate, Date endDate) {
         this.location = location;
         this.startDate = startDate;
         this.endDate = endDate;

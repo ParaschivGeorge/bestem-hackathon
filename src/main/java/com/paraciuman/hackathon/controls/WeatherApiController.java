@@ -7,6 +7,7 @@ import org.hibernate.boot.jaxb.SourceType;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.paraciuman.hackathon.requestBodyTypes.WeatherAPIRequestBody;
 
 
 import java.time.LocalDate;
@@ -38,20 +39,20 @@ public class WeatherApiController {
 
     @PostMapping(path = "/weather")
     public List<WeatherApiResponse> getWeather
-        (@RequestBody final String location, @RequestBody final Date startDate, @RequestBody final Date endDate)
+        (@RequestBody final WeatherAPIRequestBody weatherAPIRequestBody)
         throws Exception {
         List<WeatherApiResponse> response = new ArrayList<>();
         List<Date> dates = new ArrayList<>(25);
-        dates.add(startDate);
+        dates.add(weatherAPIRequestBody.getStartDate());
 
-        Loc loc = HttpActions.getLatLong(location);
+        Loc loc = HttpActions.getLatLong(weatherAPIRequestBody.getLocation());
 
         Integer i = 0;
         while (true) {
             String mounth, day;
-            Date newDate = DateUtil.addDays(startDate, i);
+            Date newDate = DateUtil.addDays(weatherAPIRequestBody.getStartDate(), i);
             i++;
-            if (newDate.after(endDate))
+            if (newDate.after(weatherAPIRequestBody.getEndDate()))
                 break;
 
             if (newDate.getDay() < 10)
