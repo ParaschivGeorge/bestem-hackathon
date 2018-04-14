@@ -11,6 +11,10 @@ public class User {
 
     private String email;
 
+    private String name;
+
+    private String pictureUrl;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Agenda> agendas;
 
@@ -18,6 +22,22 @@ public class User {
     private Set<Friend> friends;
 
     public User() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     public long getId() {

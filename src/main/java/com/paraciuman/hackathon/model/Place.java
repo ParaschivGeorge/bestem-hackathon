@@ -3,6 +3,7 @@ package com.paraciuman.hackathon.model;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
 
 @Entity
@@ -23,6 +24,9 @@ public class Place {
 
     private Date day;
 
+    private Time travelToNextPOI;
+
+
     @Nullable
     private Integer estimation;
 
@@ -36,6 +40,15 @@ public class Place {
     public void setDay(Date day) {
         this.day = day;
     }
+
+    public Time getTravelToNextPOI() {
+        return travelToNextPOI;
+    }
+
+    public void setTravelToNextPOI(Time travelToNextPOI) {
+        this.travelToNextPOI = travelToNextPOI;
+    }
+
 
     public long getId() {
         return id;

@@ -2,6 +2,7 @@ package com.paraciuman.hackathon.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,8 @@ public class Agenda {
 
     private String location;
 
+    private List<Day> day;
+
     public String getLocation() {
         return location;
     }
@@ -29,6 +32,7 @@ public class Agenda {
     public void setLocation(String location) {
         this.location = location;
     }
+
 
     @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Place> places;
@@ -48,6 +52,22 @@ public class Agenda {
     private Set<CheckList> checkLists;
 
     public Agenda() {
+    }
+
+    public List<Day> getDay() {
+        return day;
+    }
+
+    public void setDay(List<Day> day) {
+        this.day = day;
+    }
+
+    public Set<CheckList> getCheckLists() {
+        return checkLists;
+    }
+
+    public void setCheckLists(Set<CheckList> checkLists) {
+        this.checkLists = checkLists;
     }
 
     public long getId() {
@@ -78,6 +98,14 @@ public class Agenda {
         return startDate;
     }
 
+    public Set<Place> getPlaces() {
+        return places;
+    }
+
+    public void setPlaces(Set<Place> places) {
+        this.places = places;
+    }
+
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
@@ -90,11 +118,4 @@ public class Agenda {
         this.endDate = endDate;
     }
 
-    public Set<Place> getPlaces() {
-        return places;
-    }
-
-    public void setPlaces(Set<Place> places) {
-        this.places = places;
-    }
 }
