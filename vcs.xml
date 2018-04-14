@@ -10,6 +10,10 @@
           <option name="url" value="http://github.com" />
           <option name="userName" value="georgegmtt@gmail.com" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/ParaschivGeorge/bestem-hackathon/" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\paras\IdeaProjects" />
