@@ -18,7 +18,8 @@ public class GooglePlacesControler {
         JSONObject json = new JSONObject();
         String location = "Berlin";
         Loc loc = getLatLong(location);
-        json = getHTML("https://maps.googleapis.com/maps/api/place/nearbysearch/json ?location=" + loc.getLat() + loc.getLng() + "&key=AIzaSyBcxpOqVpsm6K7XWRSL0tCWfgQE29OlZlY");
+        json = getHTML("https://maps.googleapis.com/maps/api/place/nearbysearch/json ?location=" + loc.getLat()
+                + loc.getLng() + "&key=AIzaSyBcxpOqVpsm6K7XWRSL0tCWfgQE29OlZlY");
         return json;
     }
 
