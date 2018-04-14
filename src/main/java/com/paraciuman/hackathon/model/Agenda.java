@@ -24,27 +24,12 @@ public class Agenda {
 
     private String location;
 
+    @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Day> days;
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
 
     @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Place> places;
 
-    public Set<Preference> getPreferences() {
-        return preferences;
-    }
-
-    public void setPreferences(Set<Preference> preferences) {
-        this.preferences = preferences;
-    }
 
     @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Preference> preferences;
@@ -55,11 +40,28 @@ public class Agenda {
     public Agenda() {
     }
 
+    public Set<Preference> getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(Set<Preference> preferences) {
+        this.preferences = preferences;
+    }
+
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public Set<Day> getDays() {
         return days;
     }
 
-    public void setDay(Set<Day> days) {
+    public void setDays(Set<Day> days) {
         this.days = days;
     }
 

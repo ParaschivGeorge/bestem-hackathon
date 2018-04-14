@@ -70,17 +70,17 @@ public class AgendaController {
             diffType = agendaDiff(agenda,agendaDB);
             switch (diffType){
                 case MODIFIED:
-                    agenda.setDay(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
+                    agenda.setDays(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
                     break;
                 case CALL_PLACES:
-                    agenda.setDay(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
+                    agenda.setDays(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
                     agenda.setPreferences(agendaDB.getPreferences());
                     agenda.setPlaces(preferedPlaces(agenda.getLocation(),agenda));
 
                     agendaRepository.save(agenda);
                     break;
                 case CALL_WEATHER:
-                    agenda.setDay(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
+                    agenda.setDays(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
                     weatherApiResponses = getWeather(agenda.getLocation(),agenda.getStartDate(),agenda.getEndDate());
                     i = 0;
                     for(Day day : agenda.getDays()){
@@ -89,7 +89,7 @@ public class AgendaController {
                     agendaRepository.save(agenda);
                     break;
                 case CALL_BOTH:
-                    agenda.setDay(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
+                    agenda.setDays(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
                     weatherApiResponses = getWeather(agenda.getLocation(),agenda.getStartDate(),agenda.getEndDate());
                     i = 0;
                     for(Day day : agenda.getDays()){

@@ -34,6 +34,12 @@ public class Place {
 
     private String photoUrl;
 
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_day")
+    private Day dayz;
+
     public String getName() {
         return Name;
     }
@@ -49,7 +55,13 @@ public class Place {
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
+    public Day getDayz() {
+        return dayz;
+    }
 
+    public void setDayz(Day dayz) {
+        this.dayz = dayz;
+    }
     //private
 
 
