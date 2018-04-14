@@ -6,6 +6,7 @@ import com.paraciuman.hackathon.model.Day;
 import com.paraciuman.hackathon.model.Preference;
 import com.paraciuman.hackathon.repository.AgendaRepository;
 import com.paraciuman.hackathon.repository.UserRepository;
+import com.paraciuman.hackathon.requestBodyTypes.AgendaEmailRequestBody;
 import com.paraciuman.hackathon.responseTypes.AgendaControllerResponse;
 import com.paraciuman.hackathon.responseTypes.WeatherApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,8 +58,10 @@ public class AgendaController {
         return agenda;
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "/agenda/up/{email}")
-    public AgendaControllerResponse agendaUp(@RequestBody final Agenda agenda, @PathVariable("email") String email) throws Exception {
+    @RequestMapping(method = RequestMethod.POST,value = "/agendaup")
+    public AgendaControllerResponse agendaUp(@RequestBody final AgendaEmailRequestBody agendaEmailRequestBody) throws Exception {
+        Agenda agenda = agendaEmailRequestBody.getAgenda();
+        String email = agendaEmailRequestBody.getEmail();
         Agenda agendaDB = agendaRepository.findById(agenda.getId());
         AgendaDiff.DiffType diffType;
         int i = 0;
