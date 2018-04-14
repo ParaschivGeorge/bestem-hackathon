@@ -9,7 +9,7 @@ public class User {
     @Id
     private Integer id;
 
-    private Email email;
+    private String email;
 
     public User() {
     }
@@ -22,11 +22,11 @@ public class User {
         this.id = id;
     }
 
-    public Email getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Email email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 }
