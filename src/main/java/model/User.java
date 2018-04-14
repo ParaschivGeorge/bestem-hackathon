@@ -5,13 +5,13 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 
 @Entity
-public class UserModel {
+public class User {
     @Id
     private Integer id;
 
     private Email email;
 
-    public UserModel() {
+    public User() {
     }
 
     public Integer getId() {
