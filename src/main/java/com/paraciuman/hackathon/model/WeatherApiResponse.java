@@ -1,4 +1,4 @@
-package com.paraciuman.hackathon.responseTypes;
+package com.paraciuman.hackathon.model;
 
 import com.paraciuman.hackathon.model.Day;
 import org.hibernate.mapping.Join;

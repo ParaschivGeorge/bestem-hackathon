@@ -3,12 +3,11 @@ package com.paraciuman.hackathon.controls;
 import com.paraciuman.hackathon.business.AgendaDiff;
 import com.paraciuman.hackathon.model.Agenda;
 import com.paraciuman.hackathon.model.Day;
-import com.paraciuman.hackathon.model.Preference;
 import com.paraciuman.hackathon.repository.AgendaRepository;
 import com.paraciuman.hackathon.repository.UserRepository;
 import com.paraciuman.hackathon.requestBodyTypes.AgendaEmailRequestBody;
 import com.paraciuman.hackathon.responseTypes.AgendaControllerResponse;
-import com.paraciuman.hackathon.responseTypes.WeatherApiResponse;
+import com.paraciuman.hackathon.model.WeatherApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,10 +1,7 @@
 package com.paraciuman.hackathon.model;
 
-import com.paraciuman.hackathon.responseTypes.WeatherApiResponse;
-
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,9 +10,12 @@ public class Day {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private long id;
+
     @OneToMany(mappedBy = "day", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Place> places;
+
     private Integer startHour;
+
     @OneToOne
     @JoinColumn(name = "id_weatherApiResponse")
     private WeatherApiResponse weather;
@@ -65,6 +65,22 @@ public class Day {
 
     public void setStartHour(Integer startHour) {
         this.startHour = startHour;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Agenda getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
     }
     @Override
     public boolean equals(Object o) {

@@ -1,17 +1,10 @@
 package com.paraciuman.hackathon.controls;
 
 import com.paraciuman.hackathon.model.Loc;
-import com.paraciuman.hackathon.responseTypes.WeatherApiResponse;
-import org.apache.tomcat.util.bcel.Const;
-import org.hibernate.boot.jaxb.SourceType;
+import com.paraciuman.hackathon.model.WeatherApiResponse;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import com.paraciuman.hackathon.requestBodyTypes.WeatherAPIRequestBody;
 
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
 public class WeatherApiController {
