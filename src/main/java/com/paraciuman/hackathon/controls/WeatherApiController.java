@@ -81,7 +81,7 @@ public class WeatherApiController {
         return response;
     }
 
-    private static class WeatherApiResponse {
+    private class WeatherApiResponse {
         private String description;
         private Double temperature;
         private String icon;
