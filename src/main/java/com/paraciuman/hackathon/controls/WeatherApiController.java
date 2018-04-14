@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.paraciuman.hackathon.requestBodyTypes.WeatherAPIRequestBody;
 
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -44,13 +45,16 @@ public class WeatherApiController {
         List<WeatherApiResponse> response = new ArrayList<>();
 
         Loc loc = HttpActions.getLatLong(weatherAPIRequestBody.getLocation());
-
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date endDate = sdf.parse(weatherAPIRequestBody.getEndDate());
+        Date startDate = sdf.parse(weatherAPIRequestBody.getStartDate());
         Integer i = 0;
+
         while (true) {
             String mounth, day;
-            Date newDate = DateUtil.addDays(new Date(weatherAPIRequestBody.getStartDate()), i);
+            Date newDate = DateUtil.addDays(startDate, i);
             i++;
-            if (newDate.after(new Date(weatherAPIRequestBody.getEndDate())))
+            if (newDate.after(endDate))
                 break;
 
             if (newDate.getDay() < 10)
