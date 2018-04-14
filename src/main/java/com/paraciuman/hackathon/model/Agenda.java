@@ -4,6 +4,7 @@ import com.paraciuman.hackathon.model.User;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Agenda {
@@ -20,6 +21,9 @@ public class Agenda {
     private Date startDate;
 
     private Date endDate;
+
+    @OneToMany(mappedBy = "places", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Places> placesSet;
 
     public Agenda() {
     }

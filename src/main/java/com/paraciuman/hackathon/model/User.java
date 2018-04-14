@@ -1,9 +1,7 @@
 package com.paraciuman.hackathon.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -12,6 +10,12 @@ public class User {
     private long id;
 
     private String email;
+
+    @OneToMany(mappedBy = "checklist", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CheckList> checkListSet;
+
+    @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Agenda> agendaSet;
 
     public User() {
     }

@@ -13,6 +13,7 @@ public class CheckList {
     private User user;
 
     private String comment;
+
     private Boolean checked;
 
     public CheckList() {
