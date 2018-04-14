@@ -6,4 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface AgendaRepository extends JpaRepository<Agenda, Long> {
+    Agenda findByAgenda(Agenda agenda);
+    Agenda findById(long id);
 }

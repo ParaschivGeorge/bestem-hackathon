@@ -21,10 +21,20 @@ public class Place {
     @Nullable
     private Date endDate;
 
+    private Date day;
+
     @Nullable
     private Integer estimation;
 
     public Place() {
+    }
+
+    public Date getDay() {
+        return day;
+    }
+
+    public void setDay(Date day) {
+        this.day = day;
     }
 
     public long getId() {
