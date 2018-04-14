@@ -38,12 +38,11 @@ public class WeatherApiController {
     }
 
     @GetMapping(path = "/weather")
-    static String getWeather() throws Exception {
-        Date startDate = new Date(2018, 5, 14);
-        Date endDate = new Date(2018, 5, 16);
+    static  List<WeatherApiResponse> getWeather() throws Exception {
+        Date startDate = new Date(2018, 4, 14);
+        Date endDate = new Date(2018, 4, 16);
         String location = "Berlin";
-        String response = "123";
-
+        List<WeatherApiResponse> response = new ArrayList<>();
         List<Date> dates = new ArrayList<>(25);
         dates.add(startDate);
 
@@ -51,20 +50,47 @@ public class WeatherApiController {
 
         Integer i = 0;
         while (true) {
+            String mounth, day;
             Date newDate = DateUtil.addDays(startDate, i);
             i++;
             if (newDate.after(endDate))
                 break;
 
+            if (newDate.getDay() < 10)
+                day = "0" + newDate.getDay();
+            else
+                day = String.valueOf(newDate.getDay());
+
+            if (newDate.getMonth() < 10)
+                mounth = "0" + newDate.getMonth();
+            else
+                mounth = String.valueOf(newDate.getMonth());
+
             JSONObject json = HttpActions.getHTML("https://api.darksky.net/forecast/" + KEY +"/" + loc.getLat() + "," + loc.getLng() +
-                    "[" +newDate.getYear() + "]-[" + newDate.getMonth() + "]-[" + newDate.getDay() + "]T[12]:[00]:[00]"
+                    "," + newDate.getYear() + "-" + mounth + "-" + day + "T12:00:00"
             );
 
-            System.out.println(json.toString());
+            WeatherApiResponse weatherApiResponse = new WeatherApiResponse(
+                    json.getJSONObject("currently").getString("summary"),
+                    json.getJSONObject("currently").getDouble("temperature"),
+                    json.getJSONObject("currently").getString("icon")
+            );
+
+            response.add(weatherApiResponse);
         }
+        return response;
+    }
 
+    private static class WeatherApiResponse {
+        private String description;
+        private Double temperature;
+        private String icon;
 
-        return "res";
+        public WeatherApiResponse(String description, Double temperature, String icon) {
+            this.description = description;
+            this.temperature = temperature;
+            this.icon = icon;
+        }
     }
 
     public static void main(String[] args) {
