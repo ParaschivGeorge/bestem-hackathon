@@ -1,5 +1,7 @@
 package com.paraciuman.hackathon.controls;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.paraciuman.hackathon.model.Loc;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -25,4 +27,13 @@ public class HttpActions {
 
         return json;
     }
+
+    public static Loc getLatLong(String location) throws Exception{
+        JSONObject obj = getHTML("https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyBcxpOqVpsm6K7XWRSL0tCWfgQE29OlZlY");
+        JSONObject latLong = obj.getJSONObject("location");
+        Loc loc = new Loc(latLong.getDouble("lat"), latLong.getDouble("lng"));
+        return loc;
+
+    }
+
 }
