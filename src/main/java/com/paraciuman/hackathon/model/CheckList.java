@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class CheckList {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
-    private Integer id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "id")
@@ -18,11 +18,11 @@ public class CheckList {
     public CheckList() {
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
