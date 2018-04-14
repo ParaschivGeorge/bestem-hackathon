@@ -3,6 +3,7 @@ package com.paraciuman.hackathon.model;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -23,7 +24,7 @@ public class Agenda {
 
     private String location;
 
-    private List<Day> day;
+    private List<Day> days;
 
     public String getLocation() {
         return location;
@@ -54,12 +55,12 @@ public class Agenda {
     public Agenda() {
     }
 
-    public List<Day> getDay() {
-        return day;
+    public List<Day> getDays() {
+        return days;
     }
 
-    public void setDay(List<Day> day) {
-        this.day = day;
+    public void setDay(List<Day> days) {
+        this.days = days;
     }
 
     public Set<CheckList> getCheckLists() {
@@ -98,7 +99,9 @@ public class Agenda {
         return startDate;
     }
 
+
     public Set<Place> getPlaces() {
+
         return places;
     }
 
@@ -116,6 +119,28 @@ public class Agenda {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Agenda agenda = (Agenda) o;
+        return id == agenda.id &&
+                Objects.equals(user, agenda.user) &&
+                Objects.equals(startDate, agenda.startDate) &&
+                Objects.equals(endDate, agenda.endDate) &&
+                Objects.equals(location, agenda.location) &&
+                Objects.equals(days, agenda.days) &&
+                Objects.equals(places, agenda.places) &&
+                Objects.equals(preferences, agenda.preferences) &&
+                Objects.equals(checkLists, agenda.checkLists);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, user, startDate, endDate, location, days, places, preferences, checkLists);
     }
 
 }
