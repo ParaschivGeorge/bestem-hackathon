@@ -38,7 +38,7 @@ public class WeatherApiController {
     }
 
     @GetMapping(path = "/weather")
-    static  List<WeatherApiResponse> getWeather() throws Exception {
+    public List<WeatherApiResponse> getWeather() throws Exception {
         Date startDate = new Date(2018, 4, 14);
         Date endDate = new Date(2018, 4, 16);
         String location = "Berlin";
@@ -90,14 +90,6 @@ public class WeatherApiController {
             this.description = description;
             this.temperature = temperature;
             this.icon = icon;
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            getWeather();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
