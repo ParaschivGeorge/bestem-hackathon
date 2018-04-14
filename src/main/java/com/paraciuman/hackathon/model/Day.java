@@ -1,6 +1,7 @@
 package com.paraciuman.hackathon.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Day {
     private List<Place> places;
@@ -11,7 +12,9 @@ public class Day {
         this.startHour = hour;
     }
 
+
     public List<Place> getPlaces() {
+
         return places;
     }
 
@@ -26,4 +29,19 @@ public class Day {
     public void setStartHour(int startHour) {
         this.startHour = startHour;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Day day = (Day) o;
+        return startHour == day.startHour &&
+                Objects.equals(places, day.places);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(places, startHour);
+    }
+
 }

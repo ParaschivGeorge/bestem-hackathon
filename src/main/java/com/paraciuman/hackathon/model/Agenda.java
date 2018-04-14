@@ -132,7 +132,6 @@ public class Agenda {
                 Objects.equals(endDate, agenda.endDate) &&
                 Objects.equals(location, agenda.location) &&
                 Objects.equals(days, agenda.days) &&
-                Objects.equals(places, agenda.places) &&
                 Objects.equals(preferences, agenda.preferences) &&
                 Objects.equals(checkLists, agenda.checkLists);
     }

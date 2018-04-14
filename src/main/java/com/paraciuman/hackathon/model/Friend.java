@@ -1,6 +1,7 @@
 package com.paraciuman.hackathon.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 enum friendRequest{accepted, pending, rejected};
 
@@ -41,5 +42,20 @@ public class Friend {
 
     public void setFriendReq(friendRequest friendReq) {
         this.friendReq = friendReq;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Friend friend = (Friend) o;
+        return id == friend.id &&
+                Objects.equals(user, friend.user);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, user);
     }
 }

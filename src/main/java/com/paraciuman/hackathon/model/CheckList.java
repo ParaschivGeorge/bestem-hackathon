@@ -1,6 +1,7 @@
 package com.paraciuman.hackathon.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class CheckList {
@@ -49,5 +50,21 @@ public class CheckList {
 
     public void setChecked(Boolean checked) {
         this.checked = checked;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CheckList checkList = (CheckList) o;
+        return id == checkList.id &&
+                Objects.equals(agenda, checkList.agenda) &&
+                Objects.equals(comment, checkList.comment);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, agenda, comment);
     }
 }

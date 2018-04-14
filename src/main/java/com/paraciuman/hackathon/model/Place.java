@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Place {
@@ -88,5 +89,21 @@ public class Place {
 
     public void setEstimation(Integer estimation) {
         this.estimation = estimation;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Place place = (Place) o;
+        return id == place.id &&
+                Objects.equals(agenda, place.agenda) &&
+                Objects.equals(day, place.day);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, agenda, day);
     }
 }
