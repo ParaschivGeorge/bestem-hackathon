@@ -2,15 +2,13 @@ package com.paraciuman.hackathon.model;
 
 import org.springframework.lang.Nullable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Places {
     @Id
+    @GeneratedValue(strategy =  GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne

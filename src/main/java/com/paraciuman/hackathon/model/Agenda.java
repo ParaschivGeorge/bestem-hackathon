@@ -1,14 +1,14 @@
 package com.paraciuman.hackathon.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.paraciuman.hackathon.model.User;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Agenda {
     @Id
+    @GeneratedValue(strategy =  GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne
@@ -63,5 +63,5 @@ public class Agenda {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-    
+
 }
