@@ -6,14 +6,14 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
-@StaticMetamodel(Places.class)
+@StaticMetamodel(Place.class)
 public abstract class Places_ {
 
-	public static volatile SingularAttribute<Places, Integer> estimation;
-	public static volatile SingularAttribute<Places, Date> endDate;
-	public static volatile SingularAttribute<Places, Long> id;
-	public static volatile SingularAttribute<Places, Agenda> agenda;
-	public static volatile SingularAttribute<Places, Date> startDate;
+	public static volatile SingularAttribute<Place, Integer> estimation;
+	public static volatile SingularAttribute<Place, Date> endDate;
+	public static volatile SingularAttribute<Place, Long> id;
+	public static volatile SingularAttribute<Place, Agenda> agenda;
+	public static volatile SingularAttribute<Place, Date> startDate;
 
 }
 

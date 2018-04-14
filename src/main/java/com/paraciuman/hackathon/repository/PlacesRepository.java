@@ -1,9 +1,9 @@
 package com.paraciuman.hackathon.repository;
 
-import com.paraciuman.hackathon.model.Places;
+import com.paraciuman.hackathon.model.Place;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface PlacesRepository extends JpaRepository<Places, Long> {
+public interface PlacesRepository extends JpaRepository<Place, Long> {
 }
