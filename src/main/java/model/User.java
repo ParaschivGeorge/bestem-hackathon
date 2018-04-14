@@ -5,13 +5,13 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 
 @Entity
-public class UserModel {
+public class User {
     @Id
     private Integer id;
 
-    private Email email;
+    private String email;
 
-    public UserModel() {
+    public User() {
     }
 
     public Integer getId() {
@@ -22,11 +22,11 @@ public class UserModel {
         this.id = id;
     }
 
-    public Email getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Email email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 }
