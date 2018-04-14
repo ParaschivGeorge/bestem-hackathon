@@ -9,18 +9,18 @@ import javax.persistence.Id;
 public class User {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
-    private Integer id;
+    private long id;
 
     private String email;
 
     public User() {
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
