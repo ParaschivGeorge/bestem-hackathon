@@ -1,9 +1,8 @@
 package com.paraciuman.hackathon.model;
 
-import com.paraciuman.hackathon.model.User;
-
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Agenda {
@@ -12,7 +11,7 @@ public class Agenda {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_user")
     private User user;
 
     private Date saveDate;
@@ -20,6 +19,9 @@ public class Agenda {
     private Date startDate;
 
     private Date endDate;
+
+    @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Place> places;
 
     public Agenda() {
     }
@@ -64,4 +66,11 @@ public class Agenda {
         this.endDate = endDate;
     }
 
+    public Set<Place> getPlaces() {
+        return places;
+    }
+
+    public void setPlaces(Set<Place> places) {
+        this.places = places;
+    }
 }

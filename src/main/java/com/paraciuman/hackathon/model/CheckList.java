@@ -9,10 +9,11 @@ public class CheckList {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_user")
     private User user;
 
     private String comment;
+
     private Boolean checked;
 
     public CheckList() {

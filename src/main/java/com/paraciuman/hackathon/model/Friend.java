@@ -8,13 +8,9 @@ public class Friend {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne
-    @JoinColumn(name =  "id")
-    private User user1;
-
-    @OneToOne
-    @JoinColumn(name =  "id")
-    private User user2;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Friend() {
     }
@@ -27,19 +23,11 @@ public class Friend {
         this.id = id;
     }
 
-    public User getUser1() {
-        return user1;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser1(User user1) {
-        this.user1 = user1;
-    }
-
-    public User getUser2() {
-        return user2;
-    }
-
-    public void setUser2(User user2) {
-        this.user2 = user2;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

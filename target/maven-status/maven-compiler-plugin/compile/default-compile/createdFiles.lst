@@ -1,0 +1,3 @@
+com\paraciuman\hackathon\model\CheckList.class
+com\paraciuman\hackathon\repository\CheckListRepository.class
+com\paraciuman\hackathon\model\Place.class

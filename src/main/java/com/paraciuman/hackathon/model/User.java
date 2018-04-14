@@ -1,9 +1,7 @@
 package com.paraciuman.hackathon.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -12,6 +10,17 @@ public class User {
     private long id;
 
     private String email;
+
+    private int vrajeala;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CheckList> checkLists;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Agenda> agendas;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Friend> friends;
 
     public User() {
     }
@@ -30,5 +39,37 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<CheckList> getCheckLists() {
+        return checkLists;
+    }
+
+    public void setCheckLists(Set<CheckList> checkLists) {
+        this.checkLists = checkLists;
+    }
+
+    public Set<Agenda> getAgendas() {
+        return agendas;
+    }
+
+    public void setAgendas(Set<Agenda> agendas) {
+        this.agendas = agendas;
+    }
+
+    public Set<Friend> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(Set<Friend> friends) {
+        this.friends = friends;
+    }
+
+    public int getVrajeala() {
+        return vrajeala;
+    }
+
+    public void setVrajeala(int vrajeala) {
+        this.vrajeala = vrajeala;
     }
 }
