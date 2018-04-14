@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Day {
     private List<Place> places;
-    private int startHour;
+    private Integer startHour;
     private WeatherApiResponse weather;
     private Date currentDate;
 
@@ -37,7 +37,7 @@ public class Day {
         this.places = places;
     }
 
-    public int getStartHour() {
+    public Integer getStartHour() {
         return startHour;
     }
 
@@ -50,7 +50,7 @@ public class Day {
     }
 
 
-    public void setStartHour(int startHour) {
+    public void setStartHour(Integer startHour) {
         this.startHour = startHour;
     }
     @Override

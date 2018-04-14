@@ -16,6 +16,7 @@ import java.util.List;
 
 import static com.paraciuman.hackathon.business.AgendaDiff.agendaDiff;
 import static com.paraciuman.hackathon.business.DayPlanner.planDays;
+import static com.paraciuman.hackathon.business.DaysCreator.createDays;
 import static com.paraciuman.hackathon.controls.GooglePlacesControler.preferedPlaces;
 import static com.paraciuman.hackathon.controls.WeatherApiController.getWeather;
 
@@ -69,13 +70,14 @@ public class AgendaController {
                     agenda.setDay(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
                     break;
                 case CALL_PLACES:
-
+                    agenda.setDay(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
                     agenda.setPreferences(agendaDB.getPreferences());
                     agenda.setPlaces(preferedPlaces(agenda.getLocation(),agenda));
 
                     agendaRepository.save(agenda);
                     break;
                 case CALL_WEATHER:
+                    agenda.setDay(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
                     weatherApiResponses = getWeather(agenda.getLocation(),agenda.getStartDate(),agenda.getEndDate());
                     i = 0;
                     for(Day day : agenda.getDays()){
@@ -84,6 +86,7 @@ public class AgendaController {
                     agendaRepository.save(agenda);
                     break;
                 case CALL_BOTH:
+                    agenda.setDay(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
                     weatherApiResponses = getWeather(agenda.getLocation(),agenda.getStartDate(),agenda.getEndDate());
                     i = 0;
                     for(Day day : agenda.getDays()){
