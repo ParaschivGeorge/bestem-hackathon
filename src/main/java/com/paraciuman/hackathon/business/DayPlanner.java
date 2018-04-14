@@ -10,7 +10,9 @@ public class DayPlanner {
     public static Set<Day> planDays(Set<Day> unplannedDays) {
 
         for (Day day : unplannedDays) {
-            int startHour = day.getStartHour();
+            Integer startHour = day.getStartHour();
+            if (startHour == null)
+                startHour = 10;
             Time currentTime = new Time(startHour, 0,0);
             for (Place place : day.getPlaces()) {
                 place.setEstimation(new Time(0, 45,0)); // estimate here or call api
