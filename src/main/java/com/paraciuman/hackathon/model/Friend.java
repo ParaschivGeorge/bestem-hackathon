@@ -2,6 +2,8 @@ package com.paraciuman.hackathon.model;
 
 import javax.persistence.*;
 
+enum friendRequest{accepted, pending, rejected};
+
 @Entity
 public class Friend {
     @Id
@@ -11,6 +13,9 @@ public class Friend {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Enumerated
+    private friendRequest friendReq;
 
     public Friend() {
     }
@@ -29,5 +34,12 @@ public class Friend {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    public friendRequest getFriendReq() {
+        return friendReq;
+    }
+
+    public void setFriendReq(friendRequest friendReq) {
+        this.friendReq = friendReq;
     }
 }
