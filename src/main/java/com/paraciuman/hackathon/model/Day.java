@@ -12,6 +12,8 @@ public class Day {
     private WeatherApiResponse weather;
     private Date currentDate;
 
+    public Day() {
+    }
 
     public Day(List<Place> places, int hour) {
         this.places = places;
