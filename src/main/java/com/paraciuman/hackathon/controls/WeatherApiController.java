@@ -38,57 +38,44 @@ public class WeatherApiController {
         }
     }
 
-    @GetMapping(path = "/weather1")
-    public WeatherAPIRequestBody getWeatherAPIRequestBody() {
-        return new WeatherAPIRequestBody("Berlin", "14/05/2018", "16/05/2018");
-    }
-
-    @PostMapping(path = "/weather")
-//    public List<WeatherApiResponse> postWeather
-    public Date postWeather
-        (@RequestBody final WeatherAPIRequestBody weatherAPIRequestBody)
+    public static  List<WeatherApiResponse> getWeather(String location, Date startDate, Date endDate)
         throws Exception {
         List<WeatherApiResponse> response = new ArrayList<>();
 
-        Loc loc = HttpActions.getLatLong(weatherAPIRequestBody.getLocation());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Date endDate = sdf.parse(weatherAPIRequestBody.getEndDate());
-        Date startDate = sdf.parse(weatherAPIRequestBody.getStartDate());
+        Loc loc = HttpActions.getLatLong(location);
 
-        return startDate;
-//        Integer i = 0;
-//
-//        while (true) {
-//            String mounth, day;
-//            Date newDate = DateUtil.addDays(startDate, i);
-//            i++;
-//            if (newDate.after(endDate))
-//                break;
-//
-//            if (newDate.getDay() < 10)
-//                day = "0" + newDate.getDay();
-//            else
-//                day = String.valueOf(newDate.getDay());
-//
-//            if (newDate.getMonth() < 10)
-//                mounth = "0" + newDate.getMonth();
-//            else
-//                mounth = String.valueOf(newDate.getMonth());
-//
-//            JSONObject json = HttpActions.getHTML("https://api.darksky.net/forecast/" + KEY +"/" + loc.getLat() + "," + loc.getLng() +
-//                    "," + newDate.getYear() + "-" + mounth + "-" + day + "T12:00:00"
-//            );
-//
-//            WeatherApiResponse weatherApiResponse = new WeatherApiResponse(
-//                    json.getJSONObject("currently").getString("summary"),
-//                    json.getJSONObject("currently").getDouble("temperature"),
-//                    json.getJSONObject("currently").getString("icon")
-//            );
-//
-//            response.add(weatherApiResponse);
-//        }
-//        return response;
+        Integer i = 0;
+
+        while (true) {
+            String mounth, day;
+            Date newDate = DateUtil.addDays(startDate, i);
+            i++;
+            if (newDate.after(endDate))
+                break;
+
+            if (newDate.getDay() < 10)
+                day = "0" + newDate.getDay();
+            else
+                day = String.valueOf(newDate.getDay());
+
+            if (newDate.getMonth() < 10)
+                mounth = "0" + newDate.getMonth();
+            else
+                mounth = String.valueOf(newDate.getMonth());
+
+            JSONObject json = HttpActions.getHTML("https://api.darksky.net/forecast/" + KEY +"/" + loc.getLat() + "," + loc.getLng() +
+                    "," + newDate.getYear() + "-" + mounth + "-" + day + "T12:00:00"
+            );
+
+            WeatherApiResponse weatherApiResponse = new WeatherApiResponse(
+                    json.getJSONObject("currently").getString("summary"),
+                    json.getJSONObject("currently").getDouble("temperature"),
+                    json.getJSONObject("currently").getString("icon")
+            );
+
+            response.add(weatherApiResponse);
+        }
+        return response;
     }
-
 
 }
