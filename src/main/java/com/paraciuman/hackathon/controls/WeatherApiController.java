@@ -36,7 +36,7 @@ public class WeatherApiController {
         }
     }
 
-    @GetMapping(path = "/weather")
+    @PostMapping(path = "/weather")
     public List<WeatherApiResponse> getWeather
         (@RequestBody final String location, @RequestBody final Date startDate, @RequestBody final Date endDate)
         throws Exception {
