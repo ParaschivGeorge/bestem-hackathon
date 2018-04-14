@@ -38,8 +38,13 @@ public class WeatherApiController {
         }
     }
 
+    @GetMapping(path = "/weather1")
+    public WeatherAPIRequestBody getWeatherAPIRequestBody() {
+        return new WeatherAPIRequestBody("Berlin", "14/05/2018", "16/05/2018");
+    }
+
     @PostMapping(path = "/weather")
-    public List<WeatherApiResponse> getWeather
+    public List<WeatherApiResponse> postWeather
         (@RequestBody final WeatherAPIRequestBody weatherAPIRequestBody)
         throws Exception {
         List<WeatherApiResponse> response = new ArrayList<>();
