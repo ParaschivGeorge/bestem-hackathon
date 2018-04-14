@@ -63,4 +63,5 @@ public class Agenda {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+    
 }
