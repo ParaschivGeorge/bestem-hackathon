@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    String content = "test3";
+    String content = "test15";
 
     @GetMapping(path="/test")
     public String testString() {
