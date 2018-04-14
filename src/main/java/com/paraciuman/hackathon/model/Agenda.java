@@ -44,6 +44,9 @@ public class Agenda {
     @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Preference> preferences;
 
+    @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CheckList> checkLists;
+
     public Agenda() {
     }
 

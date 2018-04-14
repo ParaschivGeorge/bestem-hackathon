@@ -12,9 +12,6 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<CheckList> checkLists;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Agenda> agendas;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -37,14 +34,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Set<CheckList> getCheckLists() {
-        return checkLists;
-    }
-
-    public void setCheckLists(Set<CheckList> checkLists) {
-        this.checkLists = checkLists;
     }
 
     public Set<Agenda> getAgendas() {

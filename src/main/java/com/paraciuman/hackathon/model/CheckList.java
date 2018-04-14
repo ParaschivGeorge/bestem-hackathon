@@ -9,8 +9,8 @@ public class CheckList {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_user")
-    private User user;
+    @JoinColumn(name = "id_agenda")
+    private Agenda agenda;
 
     private String comment;
 
@@ -27,12 +27,12 @@ public class CheckList {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Agenda getAgenda() {
+        return agenda;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
     }
 
     public String getComment() {
