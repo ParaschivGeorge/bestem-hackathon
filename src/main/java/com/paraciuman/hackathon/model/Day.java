@@ -2,6 +2,7 @@ package com.paraciuman.hackathon.model;
 
 import com.paraciuman.hackathon.responseTypes.WeatherApiResponse;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +10,8 @@ public class Day {
     private List<Place> places;
     private int startHour;
     private WeatherApiResponse weather;
+    private Date currentDate;
+
 
     public Day(List<Place> places, int hour) {
         this.places = places;
@@ -35,6 +38,15 @@ public class Day {
     public int getStartHour() {
         return startHour;
     }
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
+    }
+
 
     public void setStartHour(int startHour) {
         this.startHour = startHour;

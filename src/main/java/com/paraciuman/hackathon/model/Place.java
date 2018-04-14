@@ -30,11 +30,34 @@ public class Place {
 
     private Time travelToNextPOI;
 
+    private String Name;
+
+    private String photoUrl;
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    //private
 
 
 
     public Place() {
     }
+
+
 
     public Date getDay() {
         return day;

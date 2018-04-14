@@ -1,12 +1,23 @@
 package com.paraciuman.hackathon.controls;
 
+import com.paraciuman.hackathon.business.AgendaDiff;
 import com.paraciuman.hackathon.model.Agenda;
+import com.paraciuman.hackathon.model.Day;
 import com.paraciuman.hackathon.model.Preference;
 import com.paraciuman.hackathon.repository.AgendaRepository;
 import com.paraciuman.hackathon.repository.UserRepository;
 import com.paraciuman.hackathon.responseTypes.AgendaControllerResponse;
+import com.paraciuman.hackathon.responseTypes.WeatherApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.paraciuman.hackathon.business.AgendaDiff.agendaDiff;
+import static com.paraciuman.hackathon.business.DayPlanner.planDays;
+import static com.paraciuman.hackathon.controls.GooglePlacesControler.preferedPlaces;
+import static com.paraciuman.hackathon.controls.WeatherApiController.getWeather;
 
 @RestController
 @RequestMapping("/agenda")
@@ -46,11 +57,42 @@ public class AgendaController {
     }
 
     @RequestMapping(method = RequestMethod.POST,value = "/agenda/up/{email}")
-    public AgendaControllerResponse agendaUp(@RequestBody final Agenda agenda, @PathVariable("email") String email){
+    public AgendaControllerResponse agendaUp(@RequestBody final Agenda agenda, @PathVariable("email") String email) throws Exception {
         Agenda agendaDB = agendaRepository.findById(agenda.getId());
-
+        AgendaDiff.DiffType diffType;
+        int i = 0;
+        List<WeatherApiResponse> weatherApiResponses = new ArrayList<>();
         if(agendaDB != null){
+            diffType = agendaDiff(agenda,agendaDB);
+            switch (diffType){
+                case MODIFIED:
+                    agenda.setDay(planDays(createDays(agenda.getStartDate(),agenda.getEndDate(), agenda.getDays())));
+                    break;
+                case CALL_PLACES:
 
+                    agenda.setPreferences(agendaDB.getPreferences());
+                    agenda.setPlaces(preferedPlaces(agenda.getLocation(),agenda));
+
+                    agendaRepository.save(agenda);
+                    break;
+                case CALL_WEATHER:
+                    weatherApiResponses = getWeather(agenda.getLocation(),agenda.getStartDate(),agenda.getEndDate());
+                    i = 0;
+                    for(Day day : agenda.getDays()){
+                        day.setWeather(weatherApiResponses.get(i++));
+                    }
+                    agendaRepository.save(agenda);
+                    break;
+                case CALL_BOTH:
+                    weatherApiResponses = getWeather(agenda.getLocation(),agenda.getStartDate(),agenda.getEndDate());
+                    i = 0;
+                    for(Day day : agenda.getDays()){
+                        day.setWeather(weatherApiResponses.get(i++));
+                    }
+                    agenda.setPreferences(agendaDB.getPreferences());
+                    agenda.setPlaces(preferedPlaces(agenda.getLocation(),agenda));
+                    agendaRepository.save(agenda);
+            }
         }else{
             agenda.setUser(userRepository.findByEmail(email));
             agendaRepository.save(agenda);

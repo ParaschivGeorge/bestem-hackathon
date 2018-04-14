@@ -7,7 +7,7 @@ import java.sql.Time;
 import java.util.Set;
 
 public class DayPlanner {
-    public Set<Day> planDays(Set<Day> unplannedDays) {
+    public static Set<Day> planDays(Set<Day> unplannedDays) {
 
         for (Day day : unplannedDays) {
             int startHour = day.getStartHour();

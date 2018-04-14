@@ -24,7 +24,7 @@ public class Agenda {
 
     private String location;
 
-    private List<Day> days;
+    private Set<Day> days;
 
     public String getLocation() {
         return location;
@@ -55,11 +55,11 @@ public class Agenda {
     public Agenda() {
     }
 
-    public List<Day> getDays() {
+    public Set<Day> getDays() {
         return days;
     }
 
-    public void setDay(List<Day> days) {
+    public void setDay(Set<Day> days) {
         this.days = days;
     }
 
