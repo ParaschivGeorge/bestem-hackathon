@@ -30,9 +30,7 @@ public class HttpActions {
     }
 
     public static Loc getLatLong(String location) throws Exception{
-        JSONObject object = getHTML("https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyBx8FdZBpJGNhOzNTECBsCTrwUyjnJAbnU");
-        JSONArray arr = object.getJSONArray("results");
-        JSONObject latLong = arr.getJSONObject(0).getJSONObject("geometry").getJSONObject("location");
+        JSONObject latLong = getHTML("https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyBx8FdZBpJGNhOzNTECBsCTrwUyjnJAbnU").getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location");
         Loc loc = new Loc(latLong.getDouble("lat"), latLong.getDouble("lng"));
         return loc;
     }

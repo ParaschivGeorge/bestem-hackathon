@@ -13,8 +13,15 @@ import static com.paraciuman.hackathon.controls.HttpActions.getLatLong;
 @RestController
 public class GooglePlacesControler {
 
+    public static JSONObject preferedPlaces() throws Exception {
+        JSONObject json = places("Berlin");
+
+
+        return json;
+    }
+
     @GetMapping(path = "/places")
-    public static JSONObject places() throws Exception {
+    public static JSONObject places(String loca) throws Exception {
         JSONObject json = new JSONObject();
         String location = "Berlin";
         Loc loc = getLatLong(location);

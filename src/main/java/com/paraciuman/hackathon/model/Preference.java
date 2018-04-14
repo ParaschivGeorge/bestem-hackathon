@@ -3,7 +3,7 @@ package com.paraciuman.hackathon.model;
 import javax.persistence.*;
 
 enum pref{food,car_rental,church,bank,atm,museum,park,restaurant,stadium,hospital,zoo,supermarket,gas_station,establishment,
-    finance,health,place_of_worship}
+    finance,health,place_of_worship,room}
 
 @Entity
 public class Preference {
