@@ -12,16 +12,18 @@ public class UserController {
     private UserRepository userRepository;
 
     @RequestMapping(method = RequestMethod.POST, value = "user/add")
-    public void addUser(@RequestBody final User user){
-        if(userRepository.findById(user.getId()) != null){
+    public void addUser(@RequestBody final String email){
+        User user = userRepository.findByEmail(email);
+        if(user != null){
             return;
         }
         userRepository.save(user);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "user/update")
-    public void updateUser(@RequestBody final User user){
-        if(userRepository.findById(user.getId()) != null){
+    public void updateUser(@RequestBody final String email){
+        User user = userRepository.findByEmail(email);
+        if(user != null){
             return;
         }
         userRepository.save(user);
