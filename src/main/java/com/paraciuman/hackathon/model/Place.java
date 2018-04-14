@@ -26,8 +26,6 @@ public class Place {
     @Nullable
     private Time estimation;
 
-    private Date day;
-
     private Time travelToNextPOI;
 
     private String Name;
@@ -38,7 +36,7 @@ public class Place {
 
     @ManyToOne
     @JoinColumn(name = "id_day")
-    private Day dayz;
+    private Day day;
 
     public String getName() {
         return Name;
@@ -55,13 +53,7 @@ public class Place {
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
-    public Day getDayz() {
-        return dayz;
-    }
 
-    public void setDayz(Day dayz) {
-        this.dayz = dayz;
-    }
     //private
 
 
@@ -69,13 +61,11 @@ public class Place {
     public Place() {
     }
 
-
-
-    public Date getDay() {
+    public Day getDay() {
         return day;
     }
 
-    public void setDay(Date day) {
+    public void setDay(Day day) {
         this.day = day;
     }
 
