@@ -11,7 +11,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(method = RequestMethod.POST, value = "user/add")
+    @RequestMapping(method = RequestMethod.POST, value = "/user/add")
     public void addUser(@RequestBody final User user){
         if(userRepository.findByEmail(user.getEmail())!= null){
             return;
@@ -19,7 +19,7 @@ public class UserController {
         userRepository.save(user);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "user/update")
+    @RequestMapping(method = RequestMethod.PUT, value = "/user/update")
     public void updateUser(@RequestBody final User user){
         //User user = userRepository.findByEmail(email);
         if(userRepository.findByEmail(user.getEmail()) != null){
@@ -28,7 +28,7 @@ public class UserController {
         userRepository.save(user);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "user/delete/")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/user/delete")
     public void deleteUser(@RequestBody final String email){
         User user = userRepository.findByEmail(email);
         if(user == null){
@@ -37,7 +37,7 @@ public class UserController {
         userRepository.deleteById(user.getId());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "user/get/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/user/get")
     public User getUser(@RequestBody final String email){
         User user = userRepository.findByEmail(email);
         if(user == null){
