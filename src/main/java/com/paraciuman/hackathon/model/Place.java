@@ -18,18 +18,20 @@ public class Place {
     private Agenda agenda;
 
     @Nullable
-    private Date startDate;
+    private Time startTime;
 
     @Nullable
-    private Date endDate;
+    private Time endTime;
+
+    @Nullable
+    private Time estimation;
 
     private Date day;
 
     private Time travelToNextPOI;
 
 
-    @Nullable
-    private Integer estimation;
+
 
     public Place() {
     }
@@ -50,6 +52,29 @@ public class Place {
         this.travelToNextPOI = travelToNextPOI;
     }
 
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Time endTime) {
+        this.endTime = endTime;
+    }
+
+    public Time getEstimation() {
+        return estimation;
+    }
+
+    public void setEstimation(Time estimation) {
+        this.estimation = estimation;
+    }
 
     public long getId() {
         return id;
@@ -65,30 +90,6 @@ public class Place {
 
     public void setAgenda(Agenda agenda) {
         this.agenda = agenda;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Integer getEstimation() {
-        return estimation;
-    }
-
-    public void setEstimation(Integer estimation) {
-        this.estimation = estimation;
     }
 
     @Override

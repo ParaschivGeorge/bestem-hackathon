@@ -1,4 +1,4 @@
-package com.paraciuman.hackathon.controls;
+package com.paraciuman.hackathon.business;
 
 import com.paraciuman.hackathon.model.Agenda;
 
