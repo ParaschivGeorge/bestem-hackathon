@@ -37,7 +37,7 @@ public class WeatherApiController {
         }
     }
 
-    public static  List<WeatherApiResponse> getWeather(String location, Date startDate, Date endDate)
+    public static List<WeatherApiResponse> getWeather(String location, Date startDate, Date endDate)
         throws Exception {
         List<WeatherApiResponse> response = new ArrayList<>();
 

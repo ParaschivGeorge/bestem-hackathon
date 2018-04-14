@@ -1,21 +1,31 @@
 package com.paraciuman.hackathon.model;
 
+import com.paraciuman.hackathon.responseTypes.WeatherApiResponse;
+
 import java.util.List;
 import java.util.Objects;
 
 public class Day {
     private List<Place> places;
     private int startHour;
+    private WeatherApiResponse weather;
 
     public Day(List<Place> places, int hour) {
         this.places = places;
         this.startHour = hour;
     }
 
-
     public List<Place> getPlaces() {
 
         return places;
+    }
+
+    public WeatherApiResponse getWeather() {
+        return weather;
+    }
+
+    public void setWeather(WeatherApiResponse weather) {
+        this.weather = weather;
     }
 
     public void setPlaces(List<Place> places) {
