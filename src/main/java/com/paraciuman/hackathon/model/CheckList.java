@@ -1,4 +1,4 @@
-package model;
+package com.paraciuman.hackathon.model;
 
 import javax.persistence.*;
 
