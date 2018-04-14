@@ -11,8 +11,6 @@ public class User {
 
     private String email;
 
-    private int vrajeala;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CheckList> checkLists;
 
@@ -64,12 +62,6 @@ public class User {
     public void setFriends(Set<Friend> friends) {
         this.friends = friends;
     }
-
-    public int getVrajeala() {
-        return vrajeala;
-    }
-
-    public void setVrajeala(int vrajeala) {
-        this.vrajeala = vrajeala;
-    }
 }
+
+//AIzaSyBcxpOqVpsm6K7XWRSL0tCWfgQE29OlZlY
