@@ -57,7 +57,7 @@ public class AgendaController {
         return agenda;
     }
 
-    @GetMapping(path = "/agenda/get")
+    @GetMapping(path = "/agendaget")
     public AgendaEmailRequestBody aerb(){
         AgendaEmailRequestBody ar = new AgendaEmailRequestBody();
         HashSet<Day> hs = new HashSet<Day>();
