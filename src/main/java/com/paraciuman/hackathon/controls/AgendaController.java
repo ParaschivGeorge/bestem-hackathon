@@ -1,17 +1,18 @@
 package com.paraciuman.hackathon.controls;
 
 import com.paraciuman.hackathon.business.AgendaDiff;
-import com.paraciuman.hackathon.model.Agenda;
-import com.paraciuman.hackathon.model.Day;
+import com.paraciuman.hackathon.model.*;
 import com.paraciuman.hackathon.repository.AgendaRepository;
 import com.paraciuman.hackathon.repository.UserRepository;
 import com.paraciuman.hackathon.requestBodyTypes.AgendaEmailRequestBody;
 import com.paraciuman.hackathon.responseTypes.AgendaControllerResponse;
-import com.paraciuman.hackathon.model.WeatherApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 import static com.paraciuman.hackathon.business.AgendaDiff.agendaDiff;
@@ -55,6 +56,59 @@ public class AgendaController {
             return null;
         }
         return agenda;
+    }
+
+    @GetMapping(path = "/agenda/get")
+    public AgendaEmailRequestBody aerb(){
+        AgendaEmailRequestBody ar = new AgendaEmailRequestBody();
+        HashSet<Day> hs = new HashSet<Day>();
+        Day nd = new Day();
+        Place place = new Place();
+        place.setAgenda(ar.getAgenda());
+        place.setEndTime(new Time(2,3,4));
+        place.setEstimation(new Time(2));
+        place.setName("hackaton");
+        place.setPhotoUrl("aha");
+        place.setStartTime(new Time(1));
+        place.setDay(nd);
+        place.setId(1);
+        HashSet<Place> pl = new HashSet<>();
+        pl.add(place);
+        nd.setAgenda(ar.getAgenda());
+        nd.setPlaces(pl);
+        nd.setId(1);
+        nd.setStartHour(1);
+        nd.setcDate(new Date());
+        WeatherApiResponse war = new WeatherApiResponse();
+        nd.setWeather(war);
+        hs.add(nd);
+        ar.setAgenda(new Agenda());
+        ar.setEmail("vasile@email.com");
+        ar.getAgenda().setDays(hs);
+        ar.getAgenda().setPlaces(pl);
+        HashSet<Preference> preferences = new HashSet<>();
+        Preference pref = new Preference();
+        pref.setAgenda(ar.getAgenda());
+        pref.setId(1);
+        pref.setPreferinta("maraciuca");
+        preferences.add(pref);
+        ar.getAgenda().setPreferences(preferences);
+        ar.getAgenda().setUser(new User());
+        HashSet<CheckList> checkLists = new HashSet<>();
+        CheckList checkList = new CheckList();
+        checkList.setAgenda(ar.getAgenda());
+        checkList.setChecked(false);
+        checkList.setComment("nothing");
+        checkList.setId(1);
+        checkLists.add(checkList);
+        ar.getAgenda().setCheckLists(checkLists);
+        ar.getAgenda().setEndDate(new Date());
+        ar.getAgenda().setId(1);
+        ar.getAgenda().setLocation("Berlin");
+        ar.getAgenda().setSaveDate(new Date());
+        ar.getAgenda().setStartDate(new Date());
+
+        return ar;
     }
 
     @RequestMapping(method = RequestMethod.POST,value = "/agendaup")

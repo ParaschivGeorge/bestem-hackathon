@@ -5,6 +5,9 @@ import com.paraciuman.hackathon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class UserController {
     @Autowired
@@ -52,11 +55,10 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/user/get")
-    public User getUser(@RequestBody final String email){
-        User user = userRepository.findByEmail(email);
-        if(user == null){
-            return null;
-        }
-        return user;
+    public List<User> getUser(){
+        List<User> users = new ArrayList<>();
+        users = userRepository.getAll();
+       // users.removeAll(userRepository.get)
+        return users;
     }
 }
