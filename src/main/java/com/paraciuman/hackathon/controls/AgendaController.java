@@ -22,7 +22,6 @@ import static com.paraciuman.hackathon.controls.GooglePlacesControler.preferedPl
 import static com.paraciuman.hackathon.controls.WeatherApiController.getWeather;
 
 @RestController
-@RequestMapping("/agenda")
 public class AgendaController {
 
     @Autowired
