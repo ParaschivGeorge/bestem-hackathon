@@ -4,6 +4,7 @@ import com.paraciuman.hackathon.model.Day;
 import org.hibernate.mapping.Join;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class WeatherApiResponse {
@@ -64,5 +65,22 @@ public class WeatherApiResponse {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof WeatherApiResponse)) return false;
+        WeatherApiResponse that = (WeatherApiResponse) o;
+        return Objects.equals(getDescription(), that.getDescription()) &&
+                Objects.equals(getTemperature(), that.getTemperature()) &&
+                Objects.equals(getIcon(), that.getIcon()) &&
+                Objects.equals(getDay(), that.getDay());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getDescription(), getTemperature(), getIcon(), getDay());
     }
 }

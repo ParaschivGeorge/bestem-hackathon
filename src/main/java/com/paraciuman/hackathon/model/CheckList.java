@@ -55,16 +55,16 @@ public class CheckList {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof CheckList)) return false;
         CheckList checkList = (CheckList) o;
-        return id == checkList.id &&
-                Objects.equals(agenda, checkList.agenda) &&
-                Objects.equals(comment, checkList.comment);
+        return Objects.equals(getAgenda(), checkList.getAgenda()) &&
+                Objects.equals(getComment(), checkList.getComment()) &&
+                Objects.equals(getChecked(), checkList.getChecked());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, agenda, comment);
+        return Objects.hash(getAgenda(), getComment(), getChecked());
     }
 }

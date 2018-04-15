@@ -120,16 +120,21 @@ public class Place {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Place)) return false;
         Place place = (Place) o;
-        return id == place.id &&
-                Objects.equals(agenda, place.agenda) &&
-                Objects.equals(day, place.day);
+        return Objects.equals(getAgenda(), place.getAgenda()) &&
+                Objects.equals(getStartTime(), place.getStartTime()) &&
+                Objects.equals(getEndTime(), place.getEndTime()) &&
+                Objects.equals(getEstimation(), place.getEstimation()) &&
+                Objects.equals(getTravelToNextPOI(), place.getTravelToNextPOI()) &&
+                Objects.equals(getName(), place.getName()) &&
+                Objects.equals(getPhotoUrl(), place.getPhotoUrl()) &&
+                Objects.equals(getDay(), place.getDay());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, agenda, day);
+        return Objects.hash(getAgenda(), getStartTime(), getEndTime(), getEstimation(), getTravelToNextPOI(), getName(), getPhotoUrl(), getDay());
     }
 }

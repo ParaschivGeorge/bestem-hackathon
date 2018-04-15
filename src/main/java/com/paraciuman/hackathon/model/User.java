@@ -76,17 +76,17 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof User)) return false;
         User user = (User) o;
-        return id == user.id &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(name, user.name);
+        return Objects.equals(getEmail(), user.getEmail()) &&
+                Objects.equals(getName(), user.getName()) &&
+                Objects.equals(getPictureUrl(), user.getPictureUrl());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, email, name);
+        return Objects.hash(getEmail(), getName(), getPictureUrl());
     }
 }
 

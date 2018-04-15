@@ -121,10 +121,34 @@ public class AgendaController {
         return agendaEmailRequestBody;
     }
 
+    // function to set the many-to-one and the user from a JSON agenda
+    private Agenda repairAgenda(Agenda agenda, String email) {
+        User user = userRepository.findByEmail(email);
+        agenda.setUser(user);
+
+        for (Preference preference : agenda.getPreferences())
+            preference.setAgenda(agenda);
+        for (CheckList checkList : agenda.getCheckLists())
+            checkList.setAgenda(agenda);
+        for (Place place : agenda.getPlaces())
+            place.setAgenda(agenda);
+        for (Day day : agenda.getDays()) {
+            day.setAgenda(agenda);
+            for (Place place : day.getPlaces()) {
+                place.setAgenda(agenda);
+                place.setDay(day);
+            }
+            WeatherApiResponse weatherApiResponse = day.getWeather();
+            weatherApiResponse.setDay(day);
+        }
+        return agenda;
+    }
+
     @RequestMapping(method = RequestMethod.POST,value = "/agendaup")
     public AgendaControllerResponse agendaUp(@RequestBody final AgendaEmailRequestBody agendaEmailRequestBody) throws Exception {
         Agenda agenda = agendaEmailRequestBody.getAgenda();
         String email = agendaEmailRequestBody.getEmail();
+        agenda = repairAgenda(agenda, email);
         Agenda agendaDB = agendaRepository.findById(agenda.getId());
         AgendaDiff.DiffType diffType;
         int i = 0;

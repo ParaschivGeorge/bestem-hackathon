@@ -48,16 +48,15 @@ public class Preference {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Preference)) return false;
         Preference that = (Preference) o;
-        return id == that.id &&
-                Objects.equals(agenda, that.agenda) &&
-                Objects.equals(preferinta, that.preferinta);
+        return Objects.equals(getAgenda(), that.getAgenda()) &&
+                Objects.equals(getPreferinta(), that.getPreferinta());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, agenda, preferinta);
+        return Objects.hash(getAgenda(), getPreferinta());
     }
 }

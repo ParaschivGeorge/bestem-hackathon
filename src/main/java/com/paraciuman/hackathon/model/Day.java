@@ -84,19 +84,22 @@ public class Day {
     public void setAgenda(Agenda agenda) {
         this.agenda = agenda;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Day)) return false;
         Day day = (Day) o;
-        return startHour == day.startHour &&
-                Objects.equals(places, day.places);
+        return Objects.equals(getcDate(), day.getcDate()) &&
+                Objects.equals(getPlaces(), day.getPlaces()) &&
+                Objects.equals(getStartHour(), day.getStartHour()) &&
+                Objects.equals(getWeather(), day.getWeather()) &&
+                Objects.equals(getAgenda(), day.getAgenda());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(places, startHour);
+        return Objects.hash(getcDate(), getPlaces(), getStartHour(), getWeather(), getAgenda());
     }
-
 }
