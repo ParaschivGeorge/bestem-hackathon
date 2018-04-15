@@ -30,7 +30,7 @@ public class DaysCreator {
             Day theDay = containsDay(newDate.getYear(), newDate.getMonth(), newDate.getDay(),days);
             if (theDay != null) {
                 Day newDay = new Day();
-                newDay.setCurrentDate(newDate);
+                newDay.setcDate(newDate);
                 newDays.add(newDay);
             }
             else
@@ -42,9 +42,9 @@ public class DaysCreator {
 
     private static Day containsDay(int year, int month, int day, Set<Day> days) {
         for (Day myDay : days) {
-            if ((myDay.getCurrentDate().getYear() == year) &&
-                    (myDay.getCurrentDate().getMonth() == month) &&
-                    (myDay.getCurrentDate().getDay() == day))
+            if ((myDay.getcDate().getYear() == year) &&
+                    (myDay.getcDate().getMonth() == month) &&
+                    (myDay.getcDate().getDay() == day))
                 return myDay;
         }
         return null;

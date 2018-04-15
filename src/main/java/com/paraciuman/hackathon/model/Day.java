@@ -8,8 +8,10 @@ import java.util.Set;
 @Entity
 public class Day {
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    private Date cDate;
 
     @OneToMany(mappedBy = "day", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Place> places;
@@ -17,9 +19,9 @@ public class Day {
     private Integer startHour;
 
     @OneToOne
-    @JoinColumn(name = "id_weatherApiResponse")
+    @JoinColumn(name = "id_war")
     private WeatherApiResponse weather;
-    private Date currentDate;
+
 
     @ManyToOne
     @JoinColumn(name = "id_agenda")
@@ -28,11 +30,11 @@ public class Day {
     public Day() {
     }
 
-    public Day(Set<Place> places, int hour) {
+    /*public Day(Set<Place> places, int hour) {
         this.places = places;
         this.startHour = hour;
     }
-
+*/
     public Set<Place> getPlaces() {
 
         return places;
@@ -54,12 +56,12 @@ public class Day {
         return startHour;
     }
 
-    public Date getCurrentDate() {
-        return currentDate;
+    public Date getcDate() {
+        return cDate;
     }
 
-    public void setCurrentDate(Date currentDate) {
-        this.currentDate = currentDate;
+    public void setcDate(Date currentDate) {
+        this.cDate = currentDate;
     }
 
 
