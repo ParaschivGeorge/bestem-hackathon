@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import static com.paraciuman.hackathon.business.AgendaDiff.agendaDiff;
 import static com.paraciuman.hackathon.business.DayPlanner.planDays;
@@ -59,55 +56,69 @@ public class AgendaController {
 
     @GetMapping(path = "/agendaget")
     public AgendaEmailRequestBody aerb(){
-        AgendaEmailRequestBody ar = new AgendaEmailRequestBody();
-        HashSet<Day> hs = new HashSet<Day>();
-        Day nd = new Day();
-        Place place = new Place();
-        place.setAgenda(ar.getAgenda());
-        place.setEndTime(new Time(2,3,4));
-        place.setEstimation(new Time(2));
-        place.setName("hackaton");
-        place.setPhotoUrl("aha");
-        place.setStartTime(new Time(1));
-        place.setDay(nd);
-        place.setId(1);
-        HashSet<Place> pl = new HashSet<>();
-        pl.add(place);
-        nd.setAgenda(ar.getAgenda());
-        nd.setPlaces(pl);
-        nd.setId(1);
-        nd.setStartHour(1);
-        nd.setcDate(new Date());
-        WeatherApiResponse war = new WeatherApiResponse();
-        nd.setWeather(war);
-        hs.add(nd);
-        ar.setAgenda(new Agenda());
-        ar.setEmail("vasile@email.com");
-        ar.getAgenda().setDays(hs);
-        ar.getAgenda().setPlaces(pl);
-        HashSet<Preference> preferences = new HashSet<>();
-        Preference pref = new Preference();
-        pref.setAgenda(ar.getAgenda());
-        pref.setId(1);
-        pref.setPreferinta("maraciuca");
-        preferences.add(pref);
-        ar.getAgenda().setPreferences(preferences);
-        ar.getAgenda().setUser(new User());
-        HashSet<CheckList> checkLists = new HashSet<>();
-        CheckList checkList = new CheckList();
-        checkList.setAgenda(ar.getAgenda());
-        checkList.setChecked(false);
-        checkList.setComment("nothing");
-        checkList.setId(1);
-        checkLists.add(checkList);
-        ar.getAgenda().setCheckLists(checkLists);
-        ar.getAgenda().setEndDate(new Date());
-        ar.getAgenda().setId(1);
-        ar.getAgenda().setLocation("Berlin");
-        ar.getAgenda().setSaveDate(new Date());
-        ar.getAgenda().setStartDate(new Date());
+        AgendaEmailRequestBody agendaEmailRequestBody = new AgendaEmailRequestBody();
+        agendaEmailRequestBody.setEmail("vasile@mail.com");
 
-        return ar;
+        Agenda agenda = new Agenda();
+        agenda.setId(123);
+        agenda.setUser(null);
+        agenda.setSaveDate(new Date());
+        agenda.setStartDate(new Date(2018,5,14));
+        agenda.setEndDate(new Date(2018,5,16));
+        agenda.setLocation("Berlin");
+
+        Set<Day> days = new HashSet<>();
+
+        Set<Place> places = new HashSet<>();
+        Place place = new Place();
+        place.setId(1337);
+        place.setAgenda(null);
+        place.setStartTime(new Time(12,0,0));
+        place.setEndTime(new Time(16,0,0));
+        place.setEstimation(new Time(2,0,0));
+        place.setTravelToNextPOI(new Time(0,30,0));
+        place.setName("museum of art");
+        place.setPhotoUrl("https://93546-d-c.ooyala.com/content/images/1140/1519923786_d980438c-2392-4a41-be08-bad3cda20504_636x357.jpg");
+        place.setDay(null);
+        places.add(place);
+        agenda.setPlaces(places);
+
+        Day day = new Day();
+        day.setId(407);
+        day.setcDate(new Date(2018,5,14));
+        day.setPlaces(places);
+        day.setAgenda(null);
+        day.setStartHour(12);
+
+        WeatherApiResponse weather = new WeatherApiResponse();
+        weather.setDay(null);
+        weather.setDescription("windy");
+        weather.setIcon("windy-icon");
+        weather.setTemperature(23.2);
+
+        day.setWeather(weather);
+        days.add(day);
+        agenda.setDays(days);
+
+        Set<Preference> preferences = new HashSet<>();
+        Preference preference = new Preference();
+        preference.setId(123123);
+        preference.setAgenda(null);
+        preference.setPreferinta("museum");
+        preferences.add(preference);
+        agenda.setPreferences(preferences);
+
+        Set<CheckList> checkLists = new HashSet<>();
+        CheckList checkList = new CheckList();
+        checkList.setId(1231231);
+        checkList.setComment("pick gheorghe from the museum");
+        checkList.setChecked(false);
+        checkList.setAgenda(null);
+        checkLists.add(checkList);
+        agenda.setCheckLists(checkLists);
+
+        agendaEmailRequestBody.setAgenda(agenda);
+        return agendaEmailRequestBody;
     }
 
     @RequestMapping(method = RequestMethod.POST,value = "/agendaup")
