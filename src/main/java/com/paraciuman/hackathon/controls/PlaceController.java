@@ -22,11 +22,11 @@ public class PlaceController {
         placesRepository.save(place);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/place/update")
+    @RequestMapping(method = RequestMethod.POST, value = "/place/update")
     public void updatePreference(@RequestBody final Place place){
         if(placesRepository.findById(place.getId()) == null)
-            return;
-        placesRepository.save(place);
+            placesRepository.save(place);
+
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/place/delete/{id}")

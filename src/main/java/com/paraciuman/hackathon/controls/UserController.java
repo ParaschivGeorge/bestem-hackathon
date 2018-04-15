@@ -33,8 +33,10 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/user/update")
     public void updateUser(@RequestBody final User user){
-        //User user = userRepository.findByEmail(email);
-        if(userRepository.findByEmail(user.getEmail()) != null){
+        User user1 = userRepository.findByEmail(user.getEmail());
+
+        if(user1 != null){
+            user.setId(user1.getId());
             userRepository.save(user);
         }
 
