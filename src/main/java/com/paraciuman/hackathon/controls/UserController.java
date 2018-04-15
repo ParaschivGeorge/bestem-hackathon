@@ -57,7 +57,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET, value = "/user/get")
     public List<User> getUser(){
         List<User> users = new ArrayList<>();
-        users = userRepository.getAll();
+        //users = userRepository.getAll();
        // users.removeAll(userRepository.get)
         return users;
     }
