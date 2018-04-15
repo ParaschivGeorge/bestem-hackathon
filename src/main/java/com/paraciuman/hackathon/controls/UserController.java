@@ -35,9 +35,9 @@ public class UserController {
     public void updateUser(@RequestBody final User user){
         //User user = userRepository.findByEmail(email);
         if(userRepository.findByEmail(user.getEmail()) != null){
-            return;
+            userRepository.save(user);
         }
-        userRepository.save(user);
+
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/user/delete")
